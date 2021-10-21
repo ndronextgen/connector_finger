@@ -1,14 +1,10 @@
 <?php
-require_once ("../../wz_config/config.php");
+require_once ("config.php"); //koneksi database
 function get_http_response_code($domain1) {
   $headers = get_headers($domain1);
   return substr($headers[0], 9, 3);
 }
 $id_unic=$_POST["id_unic"];
-#definisi
-$cek_event=mysql_query("SHOW VARIABLES WHERE VARIABLE_NAME = 'event_scheduler'");$cek_list=mysql_fetch_array($cek_event);
-$hasil_cek_event = $cek_list['1'];
-if ($hasil_cek_event == 'OFF'){ $do_on = mysql_query("SET GLOBAL event_scheduler = ON"); } else {  }
 $sql_query=mysql_query("SELECT
                             tbl_ip.id_unic,
                             tbl_ip.ip,
